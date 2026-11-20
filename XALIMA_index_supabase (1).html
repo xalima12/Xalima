@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XALIMA — Wolof Open Language Project</title>
+<style>
+:root{--ink:#17324d;--muted:#5d6b78;--paper:#f5f7f8;--green:#167a62;--line:#dce4e8}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+header{background:#17324d;color:white;padding:28px 18px}.wrap{max-width:960px;margin:auto}
+.top{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+.brand{font-size:clamp(2rem,7vw,3.4rem);font-weight:850;letter-spacing:.08em;margin:0}
+.tag{margin:2px 0 0;color:#d9e8ee}.intro{max-width:720px;margin:18px 0 0;color:#f0f5f7}
+select.lang{width:auto;min-width:125px;background:white;color:var(--ink);padding:9px;border-radius:9px}
+nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}nav a{color:white;border:1px solid #7590a3;border-radius:999px;padding:7px 12px;text-decoration:none;font-size:.9rem}
+main{padding:24px 16px 50px}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;margin:0 0 18px;box-shadow:0 5px 18px #17324d0a}
+h2{margin:0 0 8px;font-size:1.3rem}.muted{color:var(--muted);margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+label{display:block;font-weight:650;font-size:.93rem;margin-bottom:5px}
+input,textarea,select{width:100%;padding:12px;border:1px solid #cbd6dc;border-radius:10px;background:white;color:var(--ink);font:inherit}
+textarea{min-height:82px;resize:vertical}.field{margin-bottom:14px}.full{grid-column:1/-1}
+button{border:0;border-radius:10px;background:var(--green);color:white;padding:12px 17px;font:inherit;font-weight:700;cursor:pointer}
+button.secondary{background:#e8eef1;color:var(--ink)}
+.actions{display:flex;gap:10px;flex-wrap:wrap}.notice{background:#eef7f3;border-left:4px solid var(--green);padding:12px;border-radius:8px;color:#244d41}
+.entry{border-top:1px solid var(--line);padding:12px 0}.entry strong{display:block}.entry small{color:var(--muted)}
+footer{text-align:center;padding:24px;color:var(--muted)}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.card{padding:16px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <div class="top">
+  <div><p class="brand">XALIMA</p><p class="tag">Wolof Open Language Project</p></div>
+  <label style="color:white"> <span data-i="language">Interface language</span>
+   <select class="lang" id="language" aria-label="Interface language">
+    <option value="fr">Français</option><option value="ar">العربية</option><option value="wo">Wolof (beta)</option>
+   </select>
+  </label>
+ </div>
+ <p class="intro" data-i="intro">Préserver le wolof. Faire progresser l’IA. Contribuez avec des mots, phrases, conversations et enregistrements naturels en wolof.</p>
+ <nav><a href="#contribute" data-i="navContribute">Contribuer</a><a href="#browse" data-i="navBrowse">Voir les contributions</a><a href="#guidelines" data-i="navGuidelines">Règles de contribution</a></nav>
+</div></header>
+<main class="wrap">
+<section class="card" id="contribute">
+<h2 data-i="formTitle">Ajouter un texte en wolof</h2>
+<p class="muted" data-i="formIntro">Ajoutez une phrase ou un court passage par contribution. Gardez les mots tels que la personne les a prononcés.</p>
+<div class="notice" data-i="prototype">Les contributions sont envoyées à la base de données XALIMA et conservées aussi dans ce navigateur comme copie locale. Elles restent en attente de vérification avant toute publication.</div>
+<form id="entryForm">
+<div class="field"><label for="wolof" data-i="wolofText">Texte wolof *</label><textarea id="wolof" required placeholder="Écrivez la phrase telle qu'elle est utilisée"></textarea></div>
+<div class="grid">
+<div class="field"><label for="arabic" data-i="arabic">Traduction arabe</label><textarea id="arabic" placeholder="الترجمة العربية"></textarea></div>
+<div class="field"><label for="french" data-i="french">Traduction française</label><textarea id="french" placeholder="Traduction française"></textarea></div>
+<div class="field"><label for="english" data-i="english">Traduction anglaise</label><textarea id="english" placeholder="English translation"></textarea></div>
+<div class="field"><label for="context" data-i="context">Contexte / utilisation</label><textarea id="context" placeholder="Qui le dit et dans quelle situation ?"></textarea></div>
+<div class="field"><label for="category" data-i="category">Catégorie</label><select id="category"><option value="Conversation">Conversation</option><option value="Question & Answer">Question & Answer</option><option value="Story">Story</option><option value="Proverb">Proverb</option><option value="Grammar">Grammar</option><option value="Education">Education</option><option value="Other">Other</option></select></div>
+<div class="field"><label for="region" data-i="region">Région / variété (facultatif)</label><input id="region" placeholder="ex. Dakar, Saint-Louis, Mbour"></div>
+<div class="field"><label for="contributor" data-i="contributor">Identifiant du contributeur (pas le nom complet)</label><input id="contributor" placeholder="ex. XAL-0001"></div>
+<div class="field"><label for="source" data-i="source">Source</label><select id="source"><option>Native speaker contribution</option><option>Published text (permission checked)</option><option>Other</option></select></div>
+<div class="field full"><label for="notes" data-i="notes">Variantes orthographiques / notes</label><textarea id="notes" placeholder="Ne réécrivez pas silencieusement la phrase ; notez les variantes ici."></textarea></div>
+<div class="field full"><label style="font-weight:500"><input id="permission" type="checkbox" required style="width:auto"> <span data-i="permission">Je confirme avoir le droit de proposer ce texte et j'accepte son partage selon les conditions ouvertes du projet, qui seront précisées avant publication.</span></label></div>
+</div>
+<button type="submit" data-i="save">Envoyer la contribution</button>
+</form>
+</section>
+<section class="card" id="browse">
+<h2 data-i="entriesTitle">Mes contributions sur cet appareil</h2>
+<p class="muted" data-i="entriesIntro">Cette liste affiche la copie locale de vos contributions sur cet appareil. Les envois au serveur restent en attente de vérification.</p>
+<div class="actions"><button id="export" type="button" data-i="export">Exporter CSV</button><button id="clear" class="secondary" type="button" data-i="clear">Effacer les données locales</button></div>
+<div id="entries"><p class="muted" data-i="empty">Aucune contribution enregistrée.</p></div>
+</section>
+<section class="card" id="guidelines">
+<h2 data-i="guideTitle">Règles de contribution</h2>
+<ul id="guideList">
+<li>Écrivez le wolof tel qu’il est naturellement parlé ; évitez les traductions mot à mot.</li>
+<li>Conservez l’orthographe originale et notez les variantes sans remplacer silencieusement le texte.</li>
+<li>Ne soumettez pas de conversations privées, de données personnelles ou de textes copiés sans autorisation.</li>
+<li>Obtenez un accord clair avant d’enregistrer ou de partager la voix d’une personne.</li>
+<li>Une contribution reste « à vérifier » jusqu’à sa relecture par une deuxième personne parlant couramment le wolof.</li>
+<li>Avant toute publication, choisissez une licence claire avec les contributeurs. Les textes et les audios peuvent nécessiter des autorisations différentes.</li>
+</ul>
+<p class="muted" data-i="wolofBeta">Les libellés wolof de cette version sont provisoires et doivent être relus par des locuteurs natifs avant diffusion publique.</p>
+</section>
+</main>
+<footer>XALIMA · Données linguistiques communautaires pour la recherche et les technologies de langue</footer>
+<script>
+const KEY='xalima_entries_v1';
+const fields=['wolof','arabic','french','english','context','category','region','contributor','source','notes'];
+const translations={
+fr:{language:"Langue de l’interface",intro:"Préserver le wolof. Faire progresser l’IA. Contribuez avec des mots, phrases, conversations et enregistrements naturels en wolof.",navContribute:"Contribuer",navBrowse:"Voir les contributions",navGuidelines:"Règles de contribution",formTitle:"Ajouter un texte en wolof",formIntro:"Ajoutez une phrase ou un court passage par contribution. Gardez les mots tels que la personne les a prononcés.",prototype:"Les contributions sont envoyées à la base de données XALIMA et conservées aussi dans ce navigateur comme copie locale. Elles restent en attente de vérification avant toute publication.",wolofText:"Texte wolof *",arabic:"Traduction arabe",french:"Traduction française",english:"Traduction anglaise",context:"Contexte / utilisation",category:"Catégorie",region:"Région / variété (facultatif)",contributor:"Identifiant du contributeur (pas le nom complet)",source:"Source",notes:"Variantes orthographiques / notes",permission:"Je confirme avoir le droit de proposer ce texte et j'accepte son partage selon les conditions ouvertes du projet, qui seront précisées avant publication.",save:"Envoyer la contribution",entriesTitle:"Mes contributions sur cet appareil",entriesIntro:"Cette liste affiche la copie locale de vos contributions sur cet appareil. Les envois au serveur restent en attente de vérification.",export:"Exporter CSV",clear:"Effacer les données locales",empty:"Aucune contribution enregistrée.",guideTitle:"Règles de contribution",guides:["Écrivez le wolof tel qu’il est naturellement parlé ; évitez les traductions mot à mot.","Conservez l’orthographe originale et notez les variantes sans remplacer silencieusement le texte.","Ne soumettez pas de conversations privées, de données personnelles ou de textes copiés sans autorisation.","Obtenez un accord clair avant d’enregistrer ou de partager la voix d’une personne.","Une contribution reste « à vérifier » jusqu’à sa relecture par une deuxième personne parlant couramment le wolof.","Avant toute publication, choisissez une licence claire avec les contributeurs. Les textes et les audios peuvent nécessiter des autorisations différentes."],wolofBeta:"Les libellés wolof de cette version sont provisoires et doivent être relus par des locuteurs natifs avant diffusion publique.",placeholder:"Écrivez la phrase telle qu'elle est utilisée",contextPlaceholder:"Qui le dit et dans quelle situation ?",regionPlaceholder:"ex. Dakar, Saint-Louis, Mbour",notesPlaceholder:"Ne réécrivez pas silencieusement la phrase ; notez les variantes ici.",saved:"Contribution envoyée à la base XALIMA. Elle reste en attente de vérification. Une copie locale a aussi été conservée.",none:"Aucune contribution à exporter.",confirmClear:"Supprimer toutes les contributions enregistrées dans ce navigateur ? Cette action est irréversible."},
+ar:{language:"لغة الواجهة",intro:"نحافظ على الولوفية ونعزز حضورها في الذكاء الاصطناعي. ساهم بكلمات وجمل ومحادثات وتسجيلات طبيعية بالولوفية.",navContribute:"أضف مساهمة",navBrowse:"تصفح المساهمات",navGuidelines:"إرشادات المساهمة",formTitle:"إضافة نص بالولوفية",formIntro:"أضف جملة أو مقطعاً قصيراً في كل مساهمة. احتفظ بصياغة المتحدث الأصلية.",prototype:"تُرسل المساهمات إلى قاعدة بيانات XALIMA، وتُحفظ نسخة محلية منها على هذا الجهاز. وتبقى قيد المراجعة قبل نشرها.",wolofText:"النص بالولوفية *",arabic:"الترجمة العربية",french:"الترجمة الفرنسية",english:"الترجمة الإنجليزية",context:"السياق / طريقة الاستخدام",category:"الفئة",region:"المنطقة / التنوع اللغوي (اختياري)",contributor:"معرّف المساهم (ليس الاسم الكامل)",source:"المصدر",notes:"اختلافات الكتابة / ملاحظات",permission:"أؤكد أن لدي الحق في تقديم هذا النص وأوافق على مشاركته وفق شروط المشروع المفتوحة التي ستُحدد قبل النشر.",save:"أرسل المساهمة",entriesTitle:"المساهمات المحفوظة على هذا الجهاز",entriesIntro:"تعرض هذه القائمة النسخة المحلية من مساهماتك على هذا الجهاز. وتبقى المساهمات المرسلة إلى الخادم قيد المراجعة.",export:"تصدير CSV",clear:"مسح البيانات المحلية",empty:"لا توجد مساهمات محفوظة بعد.",guideTitle:"إرشادات المساهمة",guides:["اكتب الولوفية كما يتحدث بها الناس طبيعياً، وتجنب الترجمة الحرفية.","احتفظ بالصياغة الأصلية وسجّل اختلافات الكتابة دون تغيير النص بصمت.","لا ترسل محادثات خاصة أو بيانات شخصية أو نصوصاً منسوخة دون إذن.","احصل على موافقة واضحة قبل تسجيل صوت أي شخص أو مشاركته.","تبقى المساهمة بحاجة إلى مراجعة حتى يراجعها متحدث آخر يجيد الولوفية.","قبل النشر، اتفق مع المساهمين على ترخيص واضح؛ فقد تحتاج النصوص والتسجيلات الصوتية إلى أذونات مختلفة."],wolofBeta:"تسميات الولوفية في هذه النسخة أولية وتحتاج إلى مراجعة متحدثين أصليين قبل النشر العام.",placeholder:"اكتب الجملة كما تُستخدم فعلياً",contextPlaceholder:"من يقولها وفي أي موقف؟",regionPlaceholder:"مثلاً: داكار، سان لويس، مبور",notesPlaceholder:"لا تعِد صياغة الجملة بصمت؛ سجّل الاختلافات هنا.",saved:"أُرسلت المساهمة إلى قاعدة XALIMA وهي قيد المراجعة. حُفظت نسخة محلية أيضاً.",none:"لا توجد مساهمات لتصديرها.",confirmClear:"هل تريد حذف جميع المساهمات المحفوظة في هذا المتصفح؟ لا يمكن التراجع عن ذلك."},
+wo:{language:"Làkk wi nga bëgg ci site bi",intro:"Denc Wolof. Yokkal doole AI. Jàppale ci dugal baat, kàddu, waxtaan ak baat yu ñu jële ci Wolof.",navContribute:"Jàppale",navBrowse:"Xool li ñu dugal",navGuidelines:"Yoonu jàppale",formTitle:"Dugal benn kàddu ci Wolof",formIntro:"Dugal benn kàddu walla tontu bu gàtt ci benn jàppale. Bul soppi li nit ki waxoon.",prototype:"Li nga dugal dañuy dem ci database bu XALIMA, te ñu denc itam ab koppi ci sa aparey. Dañuy xaar seetlu bala ñu leen génne.",wolofText:"Kàddu ci Wolof *",arabic:"Tekki ci Araab",french:"Tekki ci Farañse",english:"Tekki ci Angale",context:"Lan moo tax ñu wax ko?",category:"Xeetu kàddu",region:"Barab / xeetu Wolof (du war)",contributor:"Turu-xamle bu jàppalekat (du turam dëgg)",source:"Fu mu jóge",notes:"Bennene bindin / leeral",permission:"Dama am sañ-sañu dugal kàddu bii te nangu naa ñu ko séddoo ci anam bu ñu tëralal bu leer bala ñu ko génne.",save:"Yónnee jàppale bi",entriesTitle:"Li ñu denc ci aparey bii",entriesIntro:"Li nga dugal dañuy nekk ci browser bii. Na keneen ku xam Wolof bu baax seet ko bala ñu ko génne.",export:"Yebbi CSV",clear:"Far li nekk fii",empty:"Amul benn jàppale bu ñu denc.",guideTitle:"Yoonu jàppale",guides:["Bindal Wolof ni ñu koy waxe ci dund gu bees; moytu tekki baat baat.","Bul soppi bindin bi ci kumpa; bindal bennene bindin ci leeral yi.","Bul dugal waxtaan bu sutura, xibaaru nit, walla mbind mu ñu jëlul sañ-sañ.","Amal nangu bu leer bala ngay jël walla séddoo baatu nit.","Jàppale bi war na seet bu keneen ku xam Wolof bu baax seetul ko.","Bala ñuy génne mbind yi, waxtaanal ak ñi leen dugal ci sañ-sañu jëfandikoo. Mbind ak baat dañuy soxla sañ-sañ yu wuute."],wolofBeta:"Bindin yi ci Wolof ci misaal bii ñoo ngi ci njëkk; war nañu leen seet ak nit ñi wax Wolof bala ñu ko génne ci kanam.",placeholder:"Bindal kàddu bi ni ñu koy waxe",contextPlaceholder:"Kan moo koy wax, te ci ban xaalat?",regionPlaceholder:"Misaal: Dakar, Saint-Louis, Mbour",notesPlaceholder:"Bul soppi kàddu bi ci kumpa; bindal wuute yi fii.",saved:"Yónnee nañu li nga dugal ci database bu XALIMA. Dañuy xaar seetlu. Denc nañu itam ab koppi ci sa aparey.",none:"Amul dara ngir yebbi.",confirmClear:"Ndax bëgg nga far lépp li ñu denc ci browser bii? Doo man a dellu ginnaaw."}
+};
+function setLang(lang){
+ const t=translations[lang]||translations.fr;document.documentElement.lang=lang==='ar'?'ar':lang==='wo'?'wo':'fr';document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+ document.querySelectorAll('[data-i]').forEach(el=>{const k=el.dataset.i;if(t[k])el.textContent=t[k]});
+ document.getElementById('guideList').innerHTML=t.guides.map(x=>'<li>'+x+'</li>').join('');
+ document.getElementById('wolof').placeholder=t.placeholder;
+ document.getElementById('context').placeholder=t.contextPlaceholder;
+ document.getElementById('region').placeholder=t.regionPlaceholder;
+ document.getElementById('notes').placeholder=t.notesPlaceholder;
+ document.getElementById('category').options[0].text=t.category==='Xeetu kàddu'?'Waxtaan':t.category==='الفئة'?'محادثة':'Conversation';
+}
+document.getElementById('language').addEventListener('change',e=>setLang(e.target.value));
+const getEntries=()=>JSON.parse(localStorage.getItem(KEY)||'[]');
+const saveEntries=x=>localStorage.setItem(KEY,JSON.stringify(x));
+function render(){const box=document.getElementById('entries'),rows=getEntries(),t=translations[document.getElementById('language').value]||translations.fr;if(!rows.length){box.innerHTML='<p class="muted">'+t.empty+'</p>';return}box.innerHTML=rows.slice().reverse().map(r=>'<div class="entry"><strong>'+esc(r.wolof)+'</strong><div>'+esc(r.arabic||'')+'</div><small>'+esc(r.category)+' · '+esc(r.region||'')+' · Needs review</small></div>').join('')}
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+const SUPABASE_URL='https://tdnzufykqmsgsfpdeeew.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_6W5y_LJWATIPb7gcg3Y6hA_1Af-FkY6';
+async function sendToSupabase(r){
+ const payload={wolof_text:r.wolof,arabic_translation:r.arabic||null,french_translation:r.french||null,english_translation:r.english||null,context:r.context||null,category:r.category||null,region:r.region||null,contributor:r.contributor||null,source:r.source||null,notes:r.notes||null,consent:true};
+ const response=await fetch(SUPABASE_URL+'/rest/v1/contributions',{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':'Bearer '+SUPABASE_PUBLISHABLE_KEY,'Prefer':'return=minimal'},body:JSON.stringify(payload)});
+ if(!response.ok){let detail='';try{detail=await response.text()}catch(_){}throw new Error('HTTP '+response.status+' '+detail)}
+}
+document.getElementById('entryForm').addEventListener('submit',async e=>{e.preventDefault();const form=e.currentTarget,button=form.querySelector('button[type="submit"]');const r={};fields.forEach(id=>r[id]=document.getElementById(id).value.trim());r.status='Needs review';r.createdAt=new Date().toISOString();button.disabled=true;button.textContent='Envoi…';try{await sendToSupabase(r);const rows=getEntries();rows.push(r);saveEntries(rows);form.reset();render();alert((translations[document.getElementById('language').value]||translations.fr).saved)}catch(err){console.error(err);alert('Envoi impossible pour le moment. Vérifiez la connexion et les autorisations Supabase. Détail : '+err.message)}finally{button.disabled=false;button.textContent=(translations[document.getElementById('language').value]||translations.fr).save}});
+document.getElementById('export').addEventListener('click',()=>{const rows=getEntries(),t=translations[document.getElementById('language').value]||translations.fr;if(!rows.length){alert(t.none);return}const cols=[...fields,'status','createdAt'];const csv=[cols.join(','),...rows.map(r=>cols.map(k=>'"'+String(r[k]??'').replace(/"/g,'""')+'"').join(','))].join('\r\n');const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='xalima-contributions.csv';a.click();URL.revokeObjectURL(a.href)});
+document.getElementById('clear').addEventListener('click',()=>{const t=translations[document.getElementById('language').value]||translations.fr;if(confirm(t.confirmClear)){localStorage.removeItem(KEY);render()}});
+setLang('fr');render();
+</script>
+</body></html>
